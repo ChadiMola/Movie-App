@@ -9,22 +9,53 @@ function App() {
   const [modalShow, setModalShow] = useState(false);
   const [newData, setNewData] = useState(data);
   const [sort, setSort] = useState(0);
+  const [search, setSearch] = useState("");
   const changeRate = (id, e) => {
-    setNewData([...newData, (newData[id].rating = e)].slice(0, newData.length));
+    setNewData(newData.map((el) => (el.id !== id ? el : { ...el, rating: e })));
   };
-  const add =(title,description,posterUrl,trailerSrc)=>{
-    setNewData([...newData,{id:newData.length,title,description,posterUrl,rating:0,trailerSrc}])
-  }
+  const add = (title, description, posterUrl, trailerSrc) => {
+    setNewData([
+      ...newData,
+      {
+        id: newData.length,
+        title,
+        description,
+        posterUrl,
+        rating: 0,
+        trailerSrc,
+      },
+    ]);
+  };
+
   return (
     <>
-      <div class="container rounded-3 bgblack py-1 my-3 "style={{width:"80%"}}>
-        <Filter setModalShow={setModalShow} setSort={setSort} />
+      <div
+        class="container rounded-3 bgblack py-1 my-3 "
+        style={{ width: "80%" }}
+      >
+        <Filter
+          setModalShow={setModalShow}
+          setSort={setSort}
+          search={setSearch}
+        />
 
         <MovieList
-          data={newData.filter((el) => (sort ? el.rating === sort : data))}
+          data={newData
+            .filter((el) => (sort ? el.rating === sort : newData))
+            .filter((el) =>
+              search
+                ? el.title
+                    .toLocaleLowerCase()
+                    .includes(search.toLocaleLowerCase().trim())
+                : newData
+            )}
           changeRate={changeRate}
         />
-        <ModalAdd show={modalShow}  add={add} onHide={() => setModalShow(false)} />
+        <ModalAdd
+          show={modalShow}
+          add={add}
+          onHide={() => setModalShow(false)}
+        />
       </div>
     </>
   );
