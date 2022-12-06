@@ -1,0 +1,16 @@
+.image-holder .img-3 {
+  filter: blur(0);
+  transition: 0.5s ease-in-out;
+}
+
+.image-holder:hover .img-4 {
+  filter: blur(20px);
+  transition: 0.5s ease-in-out;
+}
+.over {
+  display: none;
+}
+.image-holder:hover .over {
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+}
