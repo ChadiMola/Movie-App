@@ -15,7 +15,7 @@ function App() {
   };
   const remove = (e) => {
     setNewData(newData.filter((el) => el.id !== e));
-  }
+  };
   const add = (title, description, posterUrl, trailerSrc) => {
     setNewData([
       ...newData,
@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <div
-        class="container rounded-3 bgblack py-1 my-3 "
+        className="container rounded-3 bgblack py-1 my-3"
         style={{ width: "80%" }}
       >
         <Filter
