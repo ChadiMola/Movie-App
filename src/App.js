@@ -13,6 +13,9 @@ function App() {
   const changeRate = (id, e) => {
     setNewData(newData.map((el) => (el.id !== id ? el : { ...el, rating: e })));
   };
+  const remove = (e) => {
+    setNewData(newData.filter((el) => el.id !== e));
+  }
   const add = (title, description, posterUrl, trailerSrc) => {
     setNewData([
       ...newData,
@@ -50,6 +53,7 @@ function App() {
                 : newData
             )}
           changeRate={changeRate}
+          remove={remove}
         />
         <ModalAdd
           show={modalShow}
