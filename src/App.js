@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <div
-        class="container rounded-3 bgblack py-1 my-3 "
+        className="container rounded-3 bgblack py-1 my-3 "
         style={{ width: "80%" }}
       >
         <Filter
