@@ -42,6 +42,7 @@ function MovieCard({ el, changeRate,remove }) {
         </div>
       </div>
     </div>
+    
   );
 }
 
