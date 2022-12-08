@@ -5,6 +5,8 @@ import MovieList from "./Components/MovieList/MovieList";
 import Filter from "./Components/Filter/Filter";
 import ModalAdd from "./Components/ModalAdd/ModalAdd";
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import Details from "./Components/Details/Details";
 function App() {
   const [modalShow, setModalShow] = useState(false);
   const [newData, setNewData] = useState(data);
@@ -15,7 +17,7 @@ function App() {
   };
   const remove = (e) => {
     setNewData(newData.filter((el) => el.id !== e));
-  }
+  };
   const add = (title, description, posterUrl, trailerSrc) => {
     setNewData([
       ...newData,
@@ -61,6 +63,10 @@ function App() {
           onHide={() => setModalShow(false)}
         />
       </div>
+      <Routes>
+<Route index element={<App />} />        
+        <Route path="/details" element={<Details />} />
+      </Routes>
     </>
   );
 }
