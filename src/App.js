@@ -8,7 +8,6 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Details from "./Components/Details/Details";
 function App() {
-  const [modalShow, setModalShow] = useState(false);
   const [newData, setNewData] = useState(data);
   const [sort, setSort] = useState(0);
   const [search, setSearch] = useState("");
@@ -34,38 +33,44 @@ function App() {
 
   return (
     <>
-      <div
-        className="container rounded-3 bgblack py-1 my-3"
-        style={{ width: "80%" }}
-      >
-        <Filter
-          setModalShow={setModalShow}
-          setSort={setSort}
-          search={setSearch}
-        />
-
-        <MovieList
-          data={newData
-            .filter((el) => (sort ? el.rating === sort : newData))
-            .filter((el) =>
-              search
-                ? el.title
-                    .toLocaleLowerCase()
-                    .includes(search.toLocaleLowerCase().trim())
-                : newData
-            )}
-          changeRate={changeRate}
-          remove={remove}
-        />
-        <ModalAdd
-          show={modalShow}
-          add={add}
-          onHide={() => setModalShow(false)}
-        />
-      </div>
       <Routes>
-<Route index element={<App />} />        
-        <Route path="/details" element={<Details />} />
+        <Route
+          path="/"
+          element={
+            <div
+              className="container rounded-3 bgblack py-1 my-3"
+              style={{ width: "80%" }}
+            >
+              <Filter
+                setSort={setSort}
+                search={setSearch}
+              />
+
+              <MovieList
+                data={newData
+                  .filter((el) => (sort ? el.rating === sort : newData))
+                  .filter((el) =>
+                    search
+                      ? el.title
+                          .toLocaleLowerCase()
+                          .includes(search.toLocaleLowerCase().trim())
+                      : newData
+                  )}
+                changeRate={changeRate}
+                remove={remove}
+              />
+            </div>
+          }
+        />
+        <Route path="/details/:id" element={<Details data={newData} />} />
+        <Route
+          path="/ModalAdd"
+          element={
+            <ModalAdd
+              add={add}
+            />
+          }
+        />
       </Routes>
     </>
   );

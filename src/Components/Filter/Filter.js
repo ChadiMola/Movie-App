@@ -1,8 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import "./Filter.css";
-function Filter({ setModalShow, setSort, search }) {
+function Filter({ setSort, search }) {
+  const navigate=useNavigate()
   return (
     <>
       <div className="container bgcolo p-2 rounded-pill sticky-top m-3 w-auto ">
@@ -48,7 +50,7 @@ function Filter({ setModalShow, setSort, search }) {
             style={{ width: "150px" }}
             className="px-2"
             variant="success"
-            onClick={() => setModalShow(true)}
+            onClick={() =>navigate('/ModalAdd') }
           >
             Add Movie
           </Button>

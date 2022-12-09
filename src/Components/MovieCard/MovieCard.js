@@ -1,15 +1,13 @@
 import "./MovieCard.css";
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import { Link } from "react-router-dom";
 
 function MovieCard({ el, changeRate,remove }) {
   const [rating, setRating] = useState(0);
   const handleRating = (rate) => {
     setRating(rate);
     changeRate(el.id, rate);
-  };
-  const handleClick = () => {
-    window.open(el.trailerSrc);
   };
   return (
     <div className="col image-holder " style={{ width: "440px" }}>
@@ -32,13 +30,15 @@ function MovieCard({ el, changeRate,remove }) {
             
           </div>
           <p className="card-text p-2 bd-highlight m-0">{el.description}</p>
+          <Link to={`details/${el.id}`}>
           <button
             type="button"
             className="btn btn-outline-danger p-2 bd-highlight"
-            onClick={handleClick}
+            
           >
             <i className="fa fa-play"></i> Watch Trailer
           </button>
+          </Link>
         </div>
       </div>
     </div>
