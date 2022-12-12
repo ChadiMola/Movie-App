@@ -9,10 +9,13 @@ function MovieCard({ el, changeRate,remove }) {
     setRating(rate);
     changeRate(el.id, rate);
   };
+  const HandelImg =(error)=>{
+    error.target.src='https://prescotthobbies.com/wp-content/uploads/2019/12/image-not-available-684f2d57b8fb401a6846574ad4d7173be03aab64aac30c989eba8688ad9bfa05.png'
+  }
   return (
     <div className="col image-holder " style={{ width: "440px" }}>
       <div className="card text-white shadow-lg bg-transparent">
-        <img src={el.posterUrl} className="card-img img-4" alt="..." />
+        <img src={el.posterUrl} onError={HandelImg} className="card-img img-4" alt="" />
         <div className="card-img-overlay over align-items-start flex-column bd-highlight">
           <div className="d-flex bd-highlight align-items-center w-100">
             <h5 className="card-title mb-auto p-2 bd-highlight">{el.title}</h5>
